@@ -1,6 +1,6 @@
 import multer from 'multer';
 import path from 'path';
-import { config } from '@/config';
+import { config } from '../config';
 import { FileUtils } from '../utils';
 
 // Ensure uploads directory exists

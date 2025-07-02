@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.upload = void 0;
 const multer_1 = __importDefault(require("multer"));
 const path_1 = __importDefault(require("path"));
-const config_1 = require("@/config");
+const config_1 = require("../config");
 const utils_1 = require("../utils");
 utils_1.FileUtils.ensureDirectoryExists('uploads');
 const storage = multer_1.default.diskStorage({

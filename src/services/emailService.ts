@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { config } from '@/config';
+import { config } from '../config';
 import { EmailAttachmentRequest, EmailResponse, AttachmentInfo } from '@/types';
 import { FileUtils } from '../utils';
 import logger from '@/utils/logger';
