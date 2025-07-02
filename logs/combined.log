@@ -49,3 +49,11 @@
 {"level":"info","message":"Server running on port 3000","nodeEnv":"development","port":3000,"service":"email-attachment-app","timestamp":"2025-06-25T23:06:32.056Z"}
 {"filename":"PO 36851–UPTIVEMFG","level":"info","message":"Email sent successfully","messageId":"<027bf7d0-019e-e0a5-555b-0fdb539021d6@gmail.com>","service":"email-attachment-app","size":"21 KB","timestamp":"2025-06-25T23:07:18.690Z","to":"smith.vanderbilt@uptive-mfg.com"}
 {"filename":"PO 36851–UPTIVEMFG","level":"info","message":"Email sent successfully","service":"email-attachment-app","timestamp":"2025-06-25T23:07:18.691Z","to":"smith.vanderbilt@uptive-mfg.com"}
+{"level":"info","message":"Server running on port 3000","nodeEnv":"development","port":3000,"service":"email-attachment-app","timestamp":"2025-07-02T21:31:22.034Z"}
+{"level":"info","message":"Server running on port 3000","nodeEnv":"development","port":3000,"service":"email-attachment-app","timestamp":"2025-07-02T21:33:07.261Z"}
+{"level":"info","message":"Server running on port 3000","nodeEnv":"development","port":3000,"service":"email-attachment-app","timestamp":"2025-07-02T21:34:37.883Z"}
+{"level":"info","message":"Server running on port 3000","nodeEnv":"development","port":3000,"service":"email-attachment-app","timestamp":"2025-07-02T21:37:49.470Z"}
+{"error":"ENOENT: no such file or directory, stat ''","level":"error","message":"Email sending failed","service":"email-attachment-app","timestamp":"2025-07-02T21:38:03.697Z"}
+{"level":"info","message":"Server running on port 3000","nodeEnv":"development","port":3000,"service":"email-attachment-app","timestamp":"2025-07-02T21:40:39.404Z"}
+{"level":"info","message":"Server running on port 3000","nodeEnv":"development","port":3000,"service":"email-attachment-app","timestamp":"2025-07-02T21:43:21.486Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"email-attachment-app","timestamp":"2025-07-02T21:45:02.500Z"}

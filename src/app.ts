@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { config } from '@/config';
 import emailRoutes from './routes/emailRoute';
+import signupLinkRoutes from './routes/signupLinkRoute';
 import { errorHandler } from '@/middleware/errorHandler';
 import logger from '@/utils/logger';
 
@@ -35,7 +36,8 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Routes
-app.use('/api/email', emailRoutes);
+app.use('/api', emailRoutes);
+app.use('/api', signupLinkRoutes);
 
 // Root endpoint
 app.get('/', (req, res) => {

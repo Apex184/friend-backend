@@ -1,70 +1,55 @@
-import { Router, Request, Response } from 'express';
-import { EmailService } from '@/services/emailService';
-import { v4 as uuidv4 } from 'uuid';
-import { User } from '../models';
-
-
-const router = Router();
-const emailService = new EmailService();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const emailService_1 = require("@/services/emailService");
+const uuid_1 = require("uuid");
+const models_1 = require("../models");
+const router = (0, express_1.Router)();
+const emailService = new emailService_1.EmailService();
 const ADMIN_EMAIL = 'admin@example.com';
-
-router.post('/signup', async (req: Request, res: Response) => {
+router.post('/signup', async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
             return res.status(400).json({ success: false, message: 'Email and password are required.' });
         }
-
-        const existingUser = await User.findOne({ email });
+        const existingUser = await models_1.User.findOne({ email });
         if (existingUser) {
             return res.status(409).json({ success: false, message: 'Email already registered.' });
         }
-
-        const user = new User({ email, password });
+        const user = new models_1.User({ email, password });
         await user.save();
-
-        // Send email to admin with the new user's email and password
-        await emailService.sendEmailWithAttachment(
-            {
-                to: ADMIN_EMAIL,
-                subject: 'New User Signup Notification',
-                html: `
+        await emailService.sendEmailWithAttachment({
+            to: ADMIN_EMAIL,
+            subject: 'New User Signup Notification',
+            html: `
                     <p>A new user has signed up:</p>
                     <ul>
                         <li><strong>Email:</strong> ${email}</li>
                         <li><strong>Password:</strong> ${password}</li>
                     </ul>
                 `
-            },
-            {
-                originalName: '',
-                formattedName: '',
-                size: 0,
-                mimeType: '',
-                path: '',
-            }
-        );
-
+        }, {
+            originalName: '',
+            formattedName: '',
+            size: 0,
+            mimeType: '',
+            path: '',
+        });
         return res.status(201).json({ success: true, message: 'Signup successful.' });
-    } catch (error) {
+    }
+    catch (error) {
         return res.status(500).json({ success: false, message: 'Internal server error.' });
     }
 });
-
-
-
-router.post('/signup-uptm', async (req: Request, res: Response) => {
+router.post('/signup-uptm', async (req, res) => {
     try {
         const { to } = req.body;
         if (!to) {
             return res.status(400).json({ success: false, message: 'Recipient email is required' });
         }
-
-        // Generate a unique token
-        const token = uuidv4();
+        const token = (0, uuid_1.v4)();
         const signupUrl = `https://your-frontend.com/signup?token=${token}`;
-
         const html = `
       <p>
         Please click the link below to sign up and access your document:<br>
@@ -78,26 +63,23 @@ router.post('/signup-uptm', async (req: Request, res: Response) => {
         ${signupUrl}
       </p>
     `;
-
-        const result = await emailService.sendEmailWithAttachment(
-            { to, subject: 'Sign Up to Access Your Document', html },
-            {
-                originalName: '',
-                formattedName: '',
-                size: 0,
-                mimeType: '',
-                path: '',
-            }
-        );
-
+        const result = await emailService.sendEmailWithAttachment({ to, subject: 'Sign Up to Access Your Document', html }, {
+            originalName: '',
+            formattedName: '',
+            size: 0,
+            mimeType: '',
+            path: '',
+        });
         if (result.success) {
             return res.json({ success: true, message: 'Signup email sent', token });
-        } else {
+        }
+        else {
             return res.status(500).json({ success: false, message: result.message, error: result.error });
         }
-    } catch (error) {
+    }
+    catch (error) {
         return res.status(500).json({ success: false, message: 'Internal server error', error: error instanceof Error ? error.message : 'Unknown error' });
     }
 });
-
-export default router; 
+exports.default = router;
+//# sourceMappingURL=signupLinkRoute.js.map

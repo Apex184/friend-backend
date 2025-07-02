@@ -13,6 +13,11 @@ const UserSchema = new Schema<IUser>({
 
 export const User = mongoose.model<IUser>('User', UserSchema);
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/yourdbname')
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
+export const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/yourdbname');
+        console.log('MongoDB connected');
+    } catch (error) {
+        console.error('MongoDB connection error:', error);
+    }
+};

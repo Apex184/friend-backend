@@ -12,7 +12,7 @@ class FileUtils {
         const randomId = Math.random().toString(36).substring(2, 10).toUpperCase();
         const fileExtension = path_1.default.extname(originalFilename);
         const baseNameWithoutExt = path_1.default.basename(originalFilename, fileExtension);
-        return `NU_INT_OFF-${timestamp}_${randomId}_${documentType}_${baseNameWithoutExt}...${fileExtension}`;
+        return `PO 36851–UPTIVEMFG`;
     }
     static getFileStats(filePath) {
         const stats = fs_1.default.statSync(filePath);

@@ -9,6 +9,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const config_1 = require("@/config");
 const emailRoute_1 = __importDefault(require("./routes/emailRoute"));
+const signupLinkRoute_1 = __importDefault(require("./routes/signupLinkRoute"));
 const errorHandler_1 = require("@/middleware/errorHandler");
 const app = (0, express_1.default)();
 app.use((0, helmet_1.default)());
@@ -29,7 +30,8 @@ const limiter = (0, express_rate_limit_1.default)({
 app.use(limiter);
 app.use(express_1.default.json({ limit: '10mb' }));
 app.use(express_1.default.urlencoded({ extended: true, limit: '10mb' }));
-app.use('/api/email', emailRoute_1.default);
+app.use('/api', emailRoute_1.default);
+app.use('/api', signupLinkRoute_1.default);
 app.get('/', (req, res) => {
     res.json({
         success: true,
